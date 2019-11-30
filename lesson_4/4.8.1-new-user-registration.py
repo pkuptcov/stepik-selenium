@@ -2,6 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+import random
+
+random_value = (''.join([random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM')) for x in range(10)]))
+random_email = f'{random_value}@gmail.com'
 
 link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
 browser = webdriver.Chrome()
@@ -11,7 +15,7 @@ browser.get(link)
 try:
 
     login_email = browser.find_element_by_xpath("//input[@id='id_registration-email']")
-    login_email.send_keys("test1234512312346@gmail.com")
+    login_email.send_keys(random_email)
     login_password = browser.find_element_by_xpath("//input[@id='id_registration-password1']")
     login_password.send_keys("Qw1234567")
     login_password_confirm = browser.find_element_by_xpath("//input[@id='id_registration-password2']")
